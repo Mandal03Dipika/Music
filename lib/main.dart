@@ -12,10 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Spotify',
       theme: ThemeData(
+        fontFamily: 'avenir',
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+
       routes: AppRoutes.getRoutes(),
       initialRoute: AppRoutes.splash_page,
     );
