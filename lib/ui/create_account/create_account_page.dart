@@ -73,7 +73,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     });
                   }
                   else{
-                    Navigator.pushReplacementNamed(context, AppRoutes.intro_page);
+                    Navigator.pushNamed(context, AppRoutes.choose_artist_page);
                   }
                 },
                 text: selectedIndex<3?"Next":"Create an account",
