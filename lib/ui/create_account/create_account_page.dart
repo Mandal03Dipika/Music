@@ -43,9 +43,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 });
               }
             else{
-                // Navigator.pop(context);
               Navigator.pushReplacementNamed(context, AppRoutes.intro_page);
-              }
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(14.0),

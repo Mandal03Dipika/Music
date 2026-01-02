@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/domain/app_colors.dart';
+import 'package:music_app/domain/app_routes.dart';
 import 'package:music_app/domain/ui_helper.dart';
 import 'package:music_app/ui/custom_widgets/my_circular_img_bg.dart';
+import 'package:music_app/ui/custom_widgets/my_custom_rounded_btn.dart';
 
-class ChooseArtistPage extends StatelessWidget {
+class ChooseArtistPage extends StatefulWidget {
+  @override
+  State<ChooseArtistPage> createState() => _ChooseArtistPageState();
+}
+
+class _ChooseArtistPageState extends State<ChooseArtistPage> {
   List <Map<String,dynamic>> mArtist=[
     {
       "imgPath":"assets/images/Chon.png",
@@ -78,6 +85,8 @@ class ChooseArtistPage extends StatelessWidget {
     },
   ];
 
+  List <int> selectedArtist=[];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -107,33 +116,62 @@ class ChooseArtistPage extends StatelessWidget {
               Expanded(
                 child: Stack(
                   children: [
-                    GridView.builder(
-                      itemCount: mArtist.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 11,
-                          crossAxisSpacing: 11,
-                          childAspectRatio: 7/8,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: GridView.builder(
+                        itemCount: mArtist.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 11,
+                            crossAxisSpacing: 11,
+                            childAspectRatio: 9/10,
+                        ),
+                        itemBuilder: (_,index){
+                          return InkWell(
+                            onTap: (){
+                              if(!selectedArtist.contains(index)) {
+                                selectedArtist.add(index);
+                                setState((){
+
+                                });
+                              }
+                              else {
+                                selectedArtist.remove(index);
+                                setState((){
+
+                                });
+                              }
+                            },
+                            child: Column(
+                              children: [
+                                MyCircularImgBg(imgPath: mArtist[index]['imgPath'],isSelected: selectedArtist.contains(index),),
+                                mSpacer(),
+                                Text(mArtist[index]['name'],
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),)
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                      itemBuilder: (_,index){
-                        return Column(
-                          children: [
-                            MyCircularImgBg(imgPath: mArtist[index]['imgPath']),
-                            mSpacer(),
-                            Text(mArtist[index]['name'],
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),)
-                          ],
-                        );
-                      },
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         width: double.infinity,
                         height: 180,
+                        child: selectedArtist.length >= 3 ? Center(
+                          child: MyCustomRoundedBtn(
+                            onTap: ()
+                            {
+                                Navigator.pushNamed(context, AppRoutes.choose_podcast_page);
+                            },
+                            text: "Next",
+                            mWidth: 100,
+                          ),
+                        ):Container(),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.topCenter,

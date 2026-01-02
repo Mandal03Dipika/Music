@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: AppRoutes.getRoutes(),
-      initialRoute: AppRoutes.splash_page,
+      initialRoute: AppRoutes.dashboard_page,
     );
   }
 }

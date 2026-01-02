@@ -11,7 +11,6 @@ Widget mSpacer({
 );
 
 InputDecoration getCreateAccTextFieldDecoration()=>InputDecoration(
-    contentPadding: EdgeInsets.zero,
   filled: true,
   fillColor: AppColors.greyColor,
   enabledBorder: OutlineInputBorder(
@@ -31,7 +30,6 @@ InputDecoration getSearchTextFieldDecoration({
   Color bgColor=Colors.white,
   String mText="Search"
 })=>InputDecoration(
-    contentPadding: EdgeInsets.zero,
     filled: true,
     fillColor: bgColor,
     hintText: mText,
