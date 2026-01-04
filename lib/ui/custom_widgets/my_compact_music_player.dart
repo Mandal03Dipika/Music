@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/domain/ui_helper.dart';
+import 'package:palette_generator/palette_generator.dart';
 
-class MyCompactMusicPlayer extends StatelessWidget {
+class MyCompactMusicPlayer extends StatefulWidget {
 
   String songTitle,albumTitle,bluetoothName,thumbnailPath;
   bool isBluetooth;
@@ -19,13 +20,27 @@ class MyCompactMusicPlayer extends StatelessWidget {
   });
 
   @override
+  State<MyCompactMusicPlayer> createState() => _MyCompactMusicPlayerState();
+}
+
+class _MyCompactMusicPlayerState extends State<MyCompactMusicPlayer> {
+  PaletteGenerator? paletteGenerator;
+
+  @override
+  void initState() {
+    super.initState();
+    getDominantColor();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
-      height: mHeight,
+      height: widget.mHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(11),
-        color: bgColor,
+        color: paletteGenerator!=null? 
+        paletteGenerator!.dominantColor!.color.withOpacity(0.4) : widget.bgColor,
       ),
       child: Padding(
           padding: EdgeInsets.only(left: 8, right: 8, top: 5),
@@ -39,7 +54,7 @@ class MyCompactMusicPlayer extends StatelessWidget {
                     height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(11),
-                      image: DecorationImage(image: AssetImage(thumbnailPath))
+                      image: DecorationImage(image: AssetImage(widget.thumbnailPath))
                     ),
                   ),
                   mSpacer(),
@@ -50,7 +65,7 @@ class MyCompactMusicPlayer extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(songTitle,
+                              Text(widget.songTitle,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -58,7 +73,7 @@ class MyCompactMusicPlayer extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                child: Text("- $albumTitle",
+                                child: Text("- ${widget.albumTitle}",
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontSize: 10  ,
@@ -69,10 +84,10 @@ class MyCompactMusicPlayer extends StatelessWidget {
                               ),
                             ],
                           ),
-                          isBluetooth ? Row(
+                          widget.isBluetooth ? Row(
                             children: [
                               Icon(Icons.bluetooth,color: Colors.white,size: 14,),
-                              Text(bluetoothName,
+                              Text(widget.bluetoothName,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -85,14 +100,15 @@ class MyCompactMusicPlayer extends StatelessWidget {
                       )
                   ),
                   mSpacer(),
-                  Icon(isBluetooth ? Icons.bluetooth:Icons.devices,color: Colors.green,),
+                  Icon(widget.isBluetooth ? Icons.bluetooth:Icons.devices,color: Colors.green,),
                   mSpacer(),
                   Icon(Icons.pause,color: Colors.white,)
                 ],
               ),
               LinearProgressIndicator(
                 value: 0.5,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                valueColor: AlwaysStoppedAnimation<Color>(paletteGenerator!=null?
+                paletteGenerator!.colors.toList()[6] : Colors.grey),
                 borderRadius: BorderRadius.circular(11),
                 backgroundColor: Colors.white.withOpacity(0.3),
               )
@@ -100,5 +116,12 @@ class MyCompactMusicPlayer extends StatelessWidget {
           ),
       ),
     );
+  }
+
+  getDominantColor() async{
+    paletteGenerator = await PaletteGenerator.fromImageProvider(AssetImage(widget.thumbnailPath));
+    setState(() {
+      
+    });
   }
 }

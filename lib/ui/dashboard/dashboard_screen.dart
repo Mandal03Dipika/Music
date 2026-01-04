@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_app/domain/app_colors.dart';
 import 'package:music_app/ui/custom_widgets/my_compact_music_player.dart';
 import 'package:music_app/ui/dashboard/navigations/home_bottom_nav_page.dart';
@@ -17,8 +16,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<Widget> mBottomNavPages=[
     HomeBottomNavPage(),
+    SearchBottomNavPage(),
     LibraryBottomNavPage(),
-    SearchBottomNavPage()
   ];
   int selectedBottomIndex=0;
 
@@ -27,7 +26,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: Stack(
           children: [
-            mBottomNavPages[selectedBottomIndex],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 65.0),
+              child: mBottomNavPages[selectedBottomIndex],
+            ),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: MyCompactMusicPlayer(
