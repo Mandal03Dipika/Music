@@ -75,7 +75,8 @@ class _ChooseArtistPageState extends State<ChooseArtistPage> {
     {
       "imgPath":"assets/images/Tycho.png",
       "name":"Golu",
-    },{
+    },
+    {
       "imgPath":"assets/images/Chon.png",
       "name":"Aasu",
     },

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:music_app/ui/create_account/create_account_page.dart';
 import 'package:music_app/ui/dashboard/dashboard_screen.dart';
+import 'package:music_app/ui/dashboard/navigations/library/my_profile.dart';
 import 'package:music_app/ui/intro/choose_artist_page.dart';
 import 'package:music_app/ui/intro/choose_podcast_page.dart';
 import 'package:music_app/ui/intro/intro_page.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String choose_artist_page="/artist";
   static const String choose_podcast_page="/podcast";
   static const String dashboard_page="/dashboard";
+  static const String profile_page="/profile";
 
   static Map<String, Widget Function(BuildContext)> getRoutes() => {
     splash_page: (context)=>SplashPage(),
@@ -22,6 +24,7 @@ class AppRoutes {
     choose_artist_page:(context)=>ChooseArtistPage(),
     choose_podcast_page:(context)=>ChoosePodcastPage(),
     dashboard_page:(context)=>DashboardScreen(),
+    profile_page:(context)=>MyProfile(profilePicPath: "assets/images/image 2.png"),
   };
 
 }

@@ -19,9 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-
       routes: AppRoutes.getRoutes(),
-      initialRoute: AppRoutes.dashboard_page,
+      initialRoute: AppRoutes.splash_page,
     );
   }
 }

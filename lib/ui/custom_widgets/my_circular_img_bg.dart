@@ -23,7 +23,7 @@ class MyCircularImgBg extends StatelessWidget {
       child: isSelected ? CircleAvatar(
         backgroundColor: Colors.black.withOpacity(0.3),
         child: Center(
-          child: Icon(Icons.done, color: Colors.white,),
+          child: Icon(Icons.done, color: Colors.green,),
         ),
       ):Container(),
     );

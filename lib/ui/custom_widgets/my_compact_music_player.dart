@@ -29,7 +29,14 @@ class _MyCompactMusicPlayerState extends State<MyCompactMusicPlayer> {
   @override
   void initState() {
     super.initState();
-    getDominantColor();
+    initializeColor();
+  }
+
+  initializeColor() async{
+    paletteGenerator=await getColorPalette(widget.thumbnailPath);
+    setState(() {
+
+    });
   }
 
   @override
@@ -116,12 +123,5 @@ class _MyCompactMusicPlayerState extends State<MyCompactMusicPlayer> {
           ),
       ),
     );
-  }
-
-  getDominantColor() async{
-    paletteGenerator = await PaletteGenerator.fromImageProvider(AssetImage(widget.thumbnailPath));
-    setState(() {
-      
-    });
   }
 }

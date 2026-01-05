@@ -28,14 +28,14 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: AppColors.blackColor,
       body:Center(
         child: AnimatedContainer(
-            duration: Duration(seconds: 1),
+            duration: Duration(seconds: 2),
             width: 80,
             height:80,
             child: SvgPicture.asset(
               "assets/logo/Logo.svg",
               width: 80,
               height: 80,
-              color: AppColors.primaryColor)
+              color: Colors.deepOrange)
         )
       ),
     );

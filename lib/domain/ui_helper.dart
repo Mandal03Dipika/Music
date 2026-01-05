@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/domain/app_colors.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 Widget mSpacer({
   double mHeight=11,
@@ -42,3 +43,8 @@ InputDecoration getSearchTextFieldDecoration({
         borderRadius: BorderRadius.circular(11)
     )
 );
+
+
+Future<PaletteGenerator> getColorPalette(String imgPath) async{
+  return await PaletteGenerator.fromImageProvider(AssetImage(imgPath));
+}

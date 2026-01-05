@@ -88,11 +88,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget stepOneUI()=>Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text("What\'s your email?",
+      Text("What's your email?",
         style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 25),),
+            fontSize: 20),),
       TextField(
         style: TextStyle(
             color: Colors.white,
